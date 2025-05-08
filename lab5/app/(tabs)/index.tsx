@@ -1,9 +1,10 @@
-import { StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
+import { ScrollView } from 'react-native';
 import { ThemedText } from '../../components/ThemedText';
 import { ThemedView } from '../../components/ThemedView';
 import { useState, useEffect } from 'react';
 import * as FileSystem from 'expo-file-system';
 import { formatBytes, formatDate } from '../utils/fileHelper';
+import styles from "../../assets/styles/styles"
 
 export default function HomeScreen() {
 	const [storageInfo, setStorageInfo] = useState({
@@ -33,27 +34,27 @@ export default function HomeScreen() {
 	};
 
 	return (
-		<ScrollView style={styles.scrollView}>
-			<ThemedView style={styles.container}>
+		<ScrollView style={styles.container}>
+			<ThemedView style={styles.content}>
 				<ThemedText type="title">Лабораторна робота 5</ThemedText>
-				<ThemedText style={styles.subtitle}>React Native з Expo</ThemedText>
+				<ThemedText type="subtitle">React Native з Expo</ThemedText>
 
 				<ThemedView style={styles.infoContainer}>
-					<ThemedText type="subtitle">Інформація про сховище</ThemedText>
+					<ThemedText type="title">Інформація про сховище</ThemedText>
 					
 					<ThemedView style={styles.infoRow}>
-						<ThemedText>Загальний обсяг:</ThemedText>
-						<ThemedText style={styles.infoValue}>{formatBytes(storageInfo.totalSpace)}</ThemedText>
+						<ThemedText type="body">Загальний обсяг:</ThemedText>
+						<ThemedText type="body" style={{ fontWeight: '500' }}>{formatBytes(storageInfo.totalSpace)}</ThemedText>
 					</ThemedView>
 
 					<ThemedView style={styles.infoRow}>
-						<ThemedText>Вільний простір:</ThemedText>
-						<ThemedText style={styles.infoValue}>{formatBytes(storageInfo.freeSpace)}</ThemedText>
+						<ThemedText type="body">Вільний простір:</ThemedText>
+						<ThemedText type="body" style={{ fontWeight: '500' }}>{formatBytes(storageInfo.freeSpace)}</ThemedText>
 					</ThemedView>
 
 					<ThemedView style={styles.infoRow}>
-						<ThemedText>Зайнятий простір:</ThemedText>
-						<ThemedText style={styles.infoValue}>{formatBytes(storageInfo.usedSpace)}</ThemedText>
+						<ThemedText type="body">Зайнятий простір:</ThemedText>
+						<ThemedText type="body" style={{ fontWeight: '500' }}>{formatBytes(storageInfo.usedSpace)}</ThemedText>
 					</ThemedView>
 
 					<ThemedView style={styles.progressBarContainer}>
@@ -65,7 +66,7 @@ export default function HomeScreen() {
 						/>
 					</ThemedView>
 
-					<ThemedText style={styles.lastUpdated}>
+					<ThemedText type="body" style={{ fontSize: 12, opacity: 0.5, textAlign: 'center', marginTop: 15 }}>
 						Останнє оновлення: {formatDate(new Date())}
 					</ThemedText>
 				</ThemedView>
@@ -73,58 +74,3 @@ export default function HomeScreen() {
 		</ScrollView>
 	);
 }
-
-const styles = StyleSheet.create({
-	scrollView: {
-		flex: 1,
-		backgroundColor: '#f5f5f5',
-	},
-	container: {
-		flex: 1,
-		alignItems: 'center',
-		padding: 20,
-	},
-	subtitle: {
-		marginTop: 10,
-		opacity: 0.7,
-	},
-	infoContainer: {
-		marginTop: 30,
-		width: '100%',
-		backgroundColor: '#fff',
-		borderRadius: 10,
-		padding: 20,
-		shadowColor: '#000',
-		shadowOffset: { width: 0, height: 2 },
-		shadowOpacity: 0.1,
-		shadowRadius: 4,
-		elevation: 2,
-	},
-	infoRow: {
-		flexDirection: 'row',
-		justifyContent: 'space-between',
-		paddingVertical: 8,
-		borderBottomWidth: 1,
-		borderBottomColor: '#eee',
-	},
-	infoValue: {
-		fontWeight: '500',
-	},
-	progressBarContainer: {
-		height: 20,
-		backgroundColor: '#eee',
-		borderRadius: 10,
-		marginTop: 20,
-		overflow: 'hidden',
-	},
-	progressBar: {
-		height: '100%',
-		backgroundColor: '#2196F3',
-	},
-	lastUpdated: {
-		marginTop: 15,
-		fontSize: 12,
-		opacity: 0.5,
-		textAlign: 'center',
-	},
-});

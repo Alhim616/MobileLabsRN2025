@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from "react"
 import {
-	View,
-	Text,
-	StyleSheet,
 	FlatList,
 	TouchableOpacity,
 	Alert,
@@ -13,6 +10,9 @@ import * as FileSystem from "expo-file-system"
 import { Ionicons } from "@expo/vector-icons"
 import { useLocalSearchParams, router } from "expo-router"
 import { formatBytes, getFileIcon, getFileType } from "../utils/fileHelper"
+import { ThemedText } from "../../components/ThemedText"
+import { ThemedView } from "../../components/ThemedView"
+import styles from "../../assets/styles/styles"
 
 export default function FolderScreen() {
 	const { path: encodedPath, name } = useLocalSearchParams()
@@ -229,20 +229,20 @@ export default function FolderScreen() {
 			onPress={() => handleItemPress(item)}
 			onLongPress={() => showItemOptions(item)}
 		>
-			<View style={styles.iconContainer}>
+			<ThemedView style={styles.iconContainer}>
 				<Ionicons
 					name={item.isDirectory ? "folder" : getFileIcon(item.name)}
 					size={24}
 					color={item.isDirectory ? "#FFD700" : "#2196F3"}
 				/>
-			</View>
-			<View style={styles.itemDetails}>
-				<Text style={styles.itemName}>{item.name}</Text>
-				<Text style={styles.itemInfo}>
+			</ThemedView>
+			<ThemedView style={styles.itemDetails}>
+				<ThemedText type="body" style={styles.itemName}>{item.name}</ThemedText>
+				<ThemedText type="body" style={styles.itemInfo}>
 					{item.isDirectory ? "Папка" : getFileType(item.name)} •{" "}
 					{formatBytes(item.size)}
-				</Text>
-			</View>
+				</ThemedText>
+			</ThemedView>
 			<TouchableOpacity
 				style={styles.moreButton}
 				onPress={() => showItemOptions(item)}
@@ -257,8 +257,8 @@ export default function FolderScreen() {
 	)
 
 	return (
-		<View style={styles.container}>
-			<View style={styles.pathContainer}>
+		<ThemedView style={styles.container}>
+			<ThemedView style={styles.pathContainer}>
 				<TouchableOpacity
 					style={styles.upButton}
 					onPress={navigateUp}
@@ -268,26 +268,27 @@ export default function FolderScreen() {
 						size={20}
 						color="#2196F3"
 					/>
-					<Text style={styles.upButtonText}>Вгору</Text>
+					<ThemedText type="body" style={styles.upButtonText}>Вгору</ThemedText>
 				</TouchableOpacity>
-				<Text
+				<ThemedText
+					type="body"
 					style={styles.pathText}
 					numberOfLines={1}
 					ellipsizeMode="middle"
 				>
 					{path.replace(FileSystem.documentDirectory, "")}
-				</Text>
-			</View>
+				</ThemedText>
+			</ThemedView>
 
 			{items.length === 0 && !loading ? (
-				<View style={styles.emptyContainer}>
+				<ThemedView style={styles.emptyContainer}>
 					<Ionicons
 						name="folder-open"
 						size={64}
 						color="#ccc"
 					/>
-					<Text style={styles.emptyText}>Ця папка порожня</Text>
-				</View>
+					<ThemedText type="body" style={styles.emptyText}>Ця папка порожня</ThemedText>
+				</ThemedView>
 			) : (
 				<FlatList
 					data={items}
@@ -298,7 +299,7 @@ export default function FolderScreen() {
 				/>
 			)}
 
-			<View style={styles.actionButtonsContainer}>
+			<ThemedView style={styles.actionButtonsContainer}>
 				<TouchableOpacity
 					style={[styles.actionButton, styles.folderButton]}
 					onPress={() => openCreateModal("folder")}
@@ -308,7 +309,7 @@ export default function FolderScreen() {
 						size={24}
 						color="#fff"
 					/>
-					<Text style={styles.actionButtonText}>Нова папка</Text>
+					<ThemedText type="body" style={styles.actionButtonText}>Нова папка</ThemedText>
 				</TouchableOpacity>
 
 				<TouchableOpacity
@@ -320,9 +321,9 @@ export default function FolderScreen() {
 						size={24}
 						color="#fff"
 					/>
-					<Text style={styles.actionButtonText}>Новий файл</Text>
+					<ThemedText type="body" style={styles.actionButtonText}>Новий файл</ThemedText>
 				</TouchableOpacity>
-			</View>
+			</ThemedView>
 
 			<Modal
 				animationType="slide"
@@ -330,17 +331,17 @@ export default function FolderScreen() {
 				visible={createModalVisible}
 				onRequestClose={() => setCreateModalVisible(false)}
 			>
-				<View style={styles.modalOverlay}>
-					<View style={styles.modalContent}>
-						<Text style={styles.modalTitle}>
+				<ThemedView style={styles.modalOverlay}>
+					<ThemedView style={styles.modalContent}>
+						<ThemedText type="title" style={styles.modalTitle}>
 							{createItemType === "folder"
 								? "Створити нову папку"
 								: "Створити новий файл"}
-						</Text>
+						</ThemedText>
 
-						<Text style={styles.inputLabel}>
+						<ThemedText type="body" style={styles.inputLabel}>
 							{createItemType === "folder" ? "Назва папки:" : "Назва файлу:"}
-						</Text>
+						</ThemedText>
 						<TextInput
 							style={styles.textInput}
 							value={newItemName}
@@ -354,7 +355,7 @@ export default function FolderScreen() {
 
 						{createItemType === "file" && (
 							<>
-								<Text style={styles.inputLabel}>Початковий вміст:</Text>
+								<ThemedText type="body" style={styles.inputLabel}>Початковий вміст:</ThemedText>
 								<TextInput
 									style={[styles.textInput, styles.contentInput]}
 									value={newFileContent}
@@ -365,181 +366,24 @@ export default function FolderScreen() {
 							</>
 						)}
 
-						<View style={styles.modalButtons}>
+						<ThemedView style={styles.modalButtons}>
 							<TouchableOpacity
 								style={[styles.modalButton, styles.cancelButton]}
 								onPress={() => setCreateModalVisible(false)}
 							>
-								<Text style={styles.cancelButtonText}>Скасувати</Text>
+								<ThemedText type="body" style={styles.cancelButtonText}>Скасувати</ThemedText>
 							</TouchableOpacity>
 
 							<TouchableOpacity
 								style={[styles.modalButton, styles.createButton]}
 								onPress={createNewItem}
 							>
-								<Text style={styles.createButtonText}>Створити</Text>
+								<ThemedText type="body" style={styles.createButtonText}>Створити</ThemedText>
 							</TouchableOpacity>
-						</View>
-					</View>
-				</View>
+						</ThemedView>
+					</ThemedView>
+				</ThemedView>
 			</Modal>
-		</View>
+		</ThemedView>
 	)
 }
-
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: "#f5f5f5",
-	},
-	pathContainer: {
-		flexDirection: "row",
-		alignItems: "center",
-		backgroundColor: "#fff",
-		padding: 10,
-		borderBottomWidth: 1,
-		borderBottomColor: "#eee",
-	},
-	upButton: {
-		flexDirection: "row",
-		alignItems: "center",
-		marginRight: 10,
-	},
-	upButtonText: {
-		marginLeft: 5,
-		color: "#2196F3",
-	},
-	pathText: {
-		flex: 1,
-		fontSize: 14,
-		color: "#555",
-	},
-	list: {
-		padding: 10,
-	},
-	item: {
-		flexDirection: "row",
-		alignItems: "center",
-		backgroundColor: "#fff",
-		borderRadius: 8,
-		marginBottom: 8,
-		padding: 12,
-		shadowColor: "#000",
-		shadowOffset: { width: 0, height: 1 },
-		shadowOpacity: 0.1,
-		shadowRadius: 2,
-		elevation: 1,
-	},
-	iconContainer: {
-		marginRight: 12,
-	},
-	itemDetails: {
-		flex: 1,
-	},
-	itemName: {
-		fontSize: 16,
-		fontWeight: "500",
-		marginBottom: 4,
-	},
-	itemInfo: {
-		fontSize: 12,
-		color: "#777",
-	},
-	moreButton: {
-		padding: 5,
-	},
-	emptyContainer: {
-		flex: 1,
-		justifyContent: "center",
-		alignItems: "center",
-	},
-	emptyText: {
-		marginTop: 10,
-		fontSize: 16,
-		color: "#777",
-	},
-	actionButtonsContainer: {
-		flexDirection: "row",
-		justifyContent: "space-between",
-		padding: 16,
-	},
-	actionButton: {
-		flexDirection: "row",
-		alignItems: "center",
-		justifyContent: "center",
-		flex: 1,
-		margin: 4,
-		padding: 12,
-		borderRadius: 8,
-	},
-	folderButton: {
-		backgroundColor: "#FFA000",
-	},
-	fileButton: {
-		backgroundColor: "#2196F3",
-	},
-	actionButtonText: {
-		color: "#fff",
-		marginLeft: 8,
-		fontWeight: "500",
-	},
-	modalOverlay: {
-		flex: 1,
-		justifyContent: "center",
-		alignItems: "center",
-		backgroundColor: "rgba(0, 0, 0, 0.5)",
-	},
-	modalContent: {
-		backgroundColor: "#fff",
-		borderRadius: 10,
-		padding: 20,
-		width: "90%",
-		maxWidth: 400,
-	},
-	modalTitle: {
-		fontSize: 18,
-		fontWeight: "bold",
-		marginBottom: 20,
-		textAlign: "center",
-	},
-	inputLabel: {
-		fontSize: 14,
-		marginBottom: 5,
-		color: "#555",
-	},
-	textInput: {
-		borderWidth: 1,
-		borderColor: "#ddd",
-		borderRadius: 5,
-		padding: 10,
-		marginBottom: 15,
-	},
-	contentInput: {
-		minHeight: 100,
-		textAlignVertical: "top",
-	},
-	modalButtons: {
-		flexDirection: "row",
-		justifyContent: "space-between",
-	},
-	modalButton: {
-		flex: 1,
-		padding: 12,
-		borderRadius: 5,
-		alignItems: "center",
-		margin: 5,
-	},
-	cancelButton: {
-		backgroundColor: "#f5f5f5",
-	},
-	cancelButtonText: {
-		color: "#333",
-	},
-	createButton: {
-		backgroundColor: "#4CAF50",
-	},
-	createButtonText: {
-		color: "#fff",
-		fontWeight: "500",
-	},
-})

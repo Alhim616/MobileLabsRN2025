@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, TextInput, TouchableOpacity, Alert } from "reac
 import * as FileSystem from "expo-file-system"
 import { useLocalSearchParams, router } from "expo-router"
 import { Ionicons } from "@expo/vector-icons"
+import styles from "../../assets/styles/styles"
 
 export default function FileEditScreen() {
   const { filePath, fileName } = useLocalSearchParams()
@@ -66,36 +67,3 @@ export default function FileEditScreen() {
     </View>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-  },
-  header: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    padding: 16,
-    borderBottomWidth: 1,
-    borderBottomColor: "#eee",
-  },
-  fileName: {
-    fontSize: 18,
-    fontWeight: "500",
-  },
-  saveButton: {
-    padding: 8,
-  },
-  loadingText: {
-    textAlign: "center",
-    color: "#777",
-    marginTop: 20,
-  },
-  editor: {
-    flex: 1,
-    padding: 16,
-    fontSize: 16,
-    lineHeight: 24,
-  },
-}) 

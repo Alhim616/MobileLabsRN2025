@@ -26,10 +26,18 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     fontWeight: 'bold',
+    marginTop: 20,
+    marginBottom: 10,
   },
   subtitle: {
-    fontSize: 18,
-    opacity: 0.7,
+    fontSize: 16,
+    color: '#666',
+    textAlign: 'center',
+    marginBottom: 30,
+  },
+  body: {
+    fontSize: 16,
+    lineHeight: 24,
   },
   link: {
     color: '#2196F3',

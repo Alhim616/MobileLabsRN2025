@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from "react-nati
 import * as FileSystem from "expo-file-system"
 import { useLocalSearchParams, router } from "expo-router"
 import { Ionicons } from "@expo/vector-icons"
+import styles from "../../assets/styles/styles"
 
 export default function FileViewScreen() {
   const { filePath, fileName } = useLocalSearchParams()
@@ -55,37 +56,3 @@ export default function FileViewScreen() {
     </View>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-  },
-  header: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    padding: 16,
-    borderBottomWidth: 1,
-    borderBottomColor: "#eee",
-  },
-  fileName: {
-    fontSize: 18,
-    fontWeight: "500",
-  },
-  editButton: {
-    padding: 8,
-  },
-  contentContainer: {
-    flex: 1,
-    padding: 16,
-  },
-  loadingText: {
-    textAlign: "center",
-    color: "#777",
-  },
-  content: {
-    fontSize: 16,
-    lineHeight: 24,
-  },
-}) 
