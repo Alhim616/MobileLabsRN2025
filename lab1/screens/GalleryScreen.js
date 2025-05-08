@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, StyleSheet, FlatList, Text } from 'react-native';
+import Footer from "../components/Footer"
 
 const data = Array(8).fill({});
 
@@ -13,8 +14,8 @@ export default function GalleryScreen() {
         renderItem={() => <View style={styles.box} />}
         contentContainerStyle={styles.container}
       />
-      <Text style={styles.footer}>Янушевич Дмитро Петрович, група ІПЗ-21-5</Text>
-      </View>
+      <Footer/>
+    </View>
   );
 }
 
@@ -29,5 +30,4 @@ const styles = StyleSheet.create({
     margin: 8,
     borderRadius: 8,
   },
-  footer: { textAlign: 'center', fontStyle: 'italic', margin: 8, color: 'gray' },
 });

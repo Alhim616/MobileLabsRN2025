@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, FlatList, StyleSheet } from 'react-native';
 import NewsItem from '../components/NewsItem';
+import Footer from "../components/Footer"
 
 const news = Array(7).fill({
   title: 'Заголовок новини',
@@ -17,12 +18,11 @@ export default function HomeScreen() {
         keyExtractor={(_, i) => i.toString()}
         renderItem={({ item }) => <NewsItem {...item} />}
       />
-      <Text style={styles.footer}>Янушевич Дмитро Петрович, група ІПЗ-21-5</Text>
+      <Footer/>
       </View>
   );
 }
 
 const styles = StyleSheet.create({
   header: { fontSize: 28, textAlign: 'center', marginVertical: 10 },
-  footer: { textAlign: 'center', fontStyle: 'italic', margin: 8, color: 'gray' },
 });

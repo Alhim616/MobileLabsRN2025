@@ -1,0 +1,22 @@
+# Node modules
+**/node_modules/
+
+# Expo / React Native
+**/dist/
+**/build/
+**/.expo/
+**/.expo-shared/
+**/.bundle/
+**/.vscode/
+**/web-build/
+
+# OS and editor junk
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Env files
+.env
+.env.*

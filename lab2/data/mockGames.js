@@ -1,0 +1,23 @@
+export const GAMES = [
+    { id: '1', title: 'GTA V', price: 10, oldPrice: 20, discount: 50, platform: 'Windows', image: 'https://ремонт-компьютеров.com.ua/images/stories/virtuemart/product/Grand-12.jpg' },
+    { id: '2', title: 'Battlefield 4', price: 35, platform: 'Windows', image: 'https://gaming-cdn.com/images/products/185/orig/battlefield-4-pc-game-ea-app-cover.jpg?v=1707146102' },
+    { id: '3', title: 'Factorio', price: 7, platform: 'Windows, Mac', image: 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/427520/header.jpg?t=1730307306' },
+    { id: '4', title: 'Horizon Zero Dawn', price: 38, platform: 'Windows', image: 'https://cdn1.epicgames.com/3328b08ac1c14540aa265a1a85c07839/offer/hzd_wide-2560x1440-bd312be05c49cf339097777c493cb899.jpg' },
+    { id: '5', title: 'Dead by Daylight', price: 5, oldPrice: 18, discount: 70, platform: 'Windows', image: 'https://www.muzzle.co.jp/wp-content/uploads/2021/10/DBD_main.jpg' },
+    { id: '6', title: 'Dota 2', price: 0, platform: 'Windows', image: 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/570/header.jpg?t=1739210483' },
+    { id: '7', title: 'The Last Of Us: Part 1',price: 5, oldPrice: 18, discount: 70, platform: 'Windows, PS4, PS5', image: 'https://image.api.playstation.com/vulcan/ap/rnd/202206/0720/0kRqUeSBIbQzz7cen3c989c6.jpg' },
+    { id: '8', title: 'Dead Cells', price: 10, platform: 'Windows', image: 'https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/588650/capsule_616x353.jpg?t=1731685726' },
+    { id: '9', title: 'Split Fiction', price: 20, platform: 'Windows', image: 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2001120/5a3209f496e911ff2fa6dccd58c682c89632d09b/capsule_616x353.jpg?t=1741794685' },
+    { id: '10', title: 'Among Us', price: 3, platform: 'Windows', image: 'https://upload.wikimedia.org/wikipedia/ru/8/84/Among_Us.png' },
+    { id: '11', title: 'V Rising', price: 10, platform: 'Windows', image: 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1604030/afe584440ed83dc3c6756ea701a3df1573acc54e/capsule_616x353.jpg?t=1743080421' },
+    { id: '12', title: 'Elden Ring: Nightreign', price: 39, platform: 'Windows, PS5, Xbox Series X/S', image: 'https://image.api.playstation.com/vulcan/ap/rnd/202501/3008/1e86b138793257acf2d2984401df5a56a6b82963c098fa2e.png' },
+    { id: '13', title: 'Doom: The Dark Ages', price: 59, platform: 'Windows, PS5, Xbox Series X/S', image: 'https://image.api.playstation.com/vulcan/ap/rnd/202501/1405/5a9411754439a02d29f43dc71e6a5a953a087111c863d381.png' },
+    { id: '14', title: 'Monster Hunter Wilds', price: 59, platform: 'Windows, PS5, Xbox Series X/S', image: 'https://image.api.playstation.com/vulcan/ap/rnd/202409/0506/aa5c40ba185302dfcc88edc276a876fdc6c516c4db07ec9d.png' },
+    { id: '15', title: 'Assassin’s Creed Shadows', price: 60, platform: 'Windows, PS5, Xbox Series X/S', image: 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3159330/23a251b5d30c761ebd5c2583f570cf19334a80b0/capsule_616x353.jpg?t=1742705129' },
+    { id: '16', title: 'Clair Obscur: Expedition 33', price: 50, platform: 'Windows, PS5, Xbox Series X/S', image: 'https://image.api.playstation.com/vulcan/ap/rnd/202501/2217/15dd9f9368aa87c9b2dcaf58e1856e8cca01b6e595331858.jpg' },
+    { id: '17', title: 'Blue Prince', price: 25, platform: 'Windows', image: 'https://image.api.playstation.com/vulcan/ap/rnd/202502/1222/459d8cee0d0720f305120da130a06b462550883bb8b9ea7c.jpg' },
+    { id: '18', title: 'Atomfall', price: 40, platform: 'Windows, PS5, Xbox Series X/S', image: 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/801800/90d302bd4bac575300dfa4bcae7531ee1af285c7/capsule_616x353.jpg?t=1745399728' },
+    { id: '19', title: 'Revenge of the Savage Planet', price: 30, platform: 'Windows, PS5, Xbox Series X/S', image: 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2787320/capsule_616x353.jpg?t=1746444204' },
+    { id: '20', title: 'Silent Hill 2', price: 60, platform: 'Windows, PS5, Xbox Series X/S', image: 'https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/2124490/header.jpg?t=1744248682' },
+];
+    
