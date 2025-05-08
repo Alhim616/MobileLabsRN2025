@@ -105,21 +105,6 @@ const styles = StyleSheet.create({
     fontWeight: "500",
     marginLeft: spacing.sm
   },
-  actionButton: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-    flex: 1,
-    margin: spacing.xs,
-    padding: spacing.md,
-    borderRadius: 8
-  },
-  folderButton: {
-    backgroundColor: colors.secondary
-  },
-  fileButton: {
-    backgroundColor: colors.primary
-  },
 
   // File Explorer
   pathContainer: {
@@ -127,8 +112,24 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: colors.white,
     padding: spacing.md,
-    borderBottomWidth: 1,
-    borderBottomColor: colors.border
+    borderRadius: 10,
+    marginBottom: spacing.md,
+    shadowColor: colors.shadow.color,
+    shadowOffset: colors.shadow.offset,
+    shadowOpacity: colors.shadow.opacity,
+    shadowRadius: colors.shadow.radius,
+    elevation: 2
+  },
+  upButton: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginRight: spacing.md,
+    padding: spacing.sm
+  },
+  upButtonText: {
+    marginLeft: spacing.xs,
+    color: colors.primary,
+    fontWeight: "500"
   },
   pathText: {
     flex: 1,
@@ -142,14 +143,21 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     backgroundColor: colors.white,
-    borderRadius: 8,
+    borderRadius: 10,
     marginBottom: spacing.sm,
     padding: spacing.md,
     shadowColor: colors.shadow.color,
-    shadowOffset: { width: 0, height: 1 },
+    shadowOffset: colors.shadow.offset,
     shadowOpacity: colors.shadow.opacity,
-    shadowRadius: 2,
-    elevation: 1
+    shadowRadius: colors.shadow.radius,
+    elevation: 2
+  },
+  iconContainer: {
+    width: 40,
+    height: 40,
+    justifyContent: "center",
+    alignItems: "center",
+    marginRight: spacing.md
   },
   itemDetails: {
     flex: 1
@@ -157,65 +165,113 @@ const styles = StyleSheet.create({
   itemName: {
     fontSize: 16,
     fontWeight: "500",
-    marginBottom: spacing.xs
+    marginBottom: spacing.xs,
+    color: colors.text.primary
   },
   itemInfo: {
-    fontSize: 12,
-    color: colors.text.light
+    fontSize: 14,
+    color: colors.text.secondary
+  },
+  moreButton: {
+    padding: spacing.sm
+  },
+  emptyContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    padding: spacing.xl
+  },
+  emptyText: {
+    marginTop: spacing.md,
+    color: colors.text.secondary,
+    fontSize: 16
+  },
+  actionButtonsContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    padding: spacing.md,
+    backgroundColor: colors.white,
+    borderTopWidth: 1,
+    borderTopColor: colors.border
+  },
+  actionButton: {
+    flex: 1,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: spacing.md,
+    borderRadius: 8,
+    marginHorizontal: spacing.xs
+  },
+  folderButton: {
+    backgroundColor: colors.secondary
+  },
+  fileButton: {
+    backgroundColor: colors.primary
+  },
+  actionButtonText: {
+    color: colors.text.white,
+    fontWeight: "500",
+    marginLeft: spacing.sm,
+    fontSize: 16
   },
 
   // Modal
   modalOverlay: {
     flex: 1,
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
     justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "rgba(0, 0, 0, 0.5)"
+    alignItems: "center"
   },
   modalContent: {
     backgroundColor: colors.white,
-    borderRadius: 10,
+    borderRadius: 15,
     padding: spacing.xl,
     width: "90%",
     maxWidth: 400
   },
   modalTitle: {
-    fontSize: 18,
-    fontWeight: "bold",
+    fontSize: 20,
+    fontWeight: "600",
     marginBottom: spacing.xl,
-    textAlign: "center"
+    textAlign: "center",
+    color: colors.text.primary
   },
   inputLabel: {
-    fontSize: 14,
-    marginBottom: spacing.xs,
-    color: colors.text.secondary
+    marginBottom: spacing.sm,
+    fontSize: 16,
+    color: colors.text.primary
   },
   textInput: {
     borderWidth: 1,
     borderColor: colors.border,
-    borderRadius: 5,
+    borderRadius: 8,
     padding: spacing.md,
-    marginBottom: spacing.lg
-  },
-  contentInput: {
-    minHeight: 100,
-    textAlignVertical: "top"
-  },
-  modalButtons: {
-    flexDirection: "row",
-    justifyContent: "space-between"
+    marginBottom: spacing.xl,
+    fontSize: 16
   },
   modalButton: {
-    flex: 1,
+    backgroundColor: colors.primary,
     padding: spacing.md,
-    borderRadius: 5,
+    borderRadius: 8,
     alignItems: "center",
-    margin: spacing.xs
+    marginBottom: spacing.sm
   },
-  cancelButton: {
-    backgroundColor: colors.background
+  modalButtonText: {
+    color: colors.text.white,
+    fontSize: 16,
+    fontWeight: "500"
   },
-  createButton: {
-    backgroundColor: colors.success
+  modalCancelButton: {
+    padding: spacing.md,
+    borderRadius: 8,
+    alignItems: "center",
+    borderWidth: 1,
+    borderColor: colors.border
+  },
+  modalCancelText: {
+    color: colors.text.secondary,
+    fontSize: 16
   },
 
   // File View/Edit
