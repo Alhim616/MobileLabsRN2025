@@ -69,6 +69,8 @@ const GestureHandlerSwitcher = ({
     onFlingLeft,
   } = handlers;
 
+  const imageUrl = "https://img.freepik.com/premium-photo/dark-devil-bullhorn-monster-illustrated-wallpaper-background-cartoon-anime-game-characters_327903-78722.jpg";
+
   const gestureProps = {
     tap: {
       outer: (
@@ -86,9 +88,7 @@ const GestureHandlerSwitcher = ({
                 if (nativeEvent.state === State.ACTIVE) onDoubleTap();
               }}>
               <Animated.View style={animatedStyle}>
-                <ClickableObject>
-                  <Text>Tap me!</Text>
-                </ClickableObject>
+                <ClickableObject imageUrl={imageUrl} text="Tap me!" />
               </Animated.View>
             </TapGestureHandler>
           </Animated.View>
@@ -104,9 +104,7 @@ const GestureHandlerSwitcher = ({
             if (nativeEvent.state === State.ACTIVE) onLongPress();
           }}>
           <Animated.View style={animatedStyle}>
-            <ClickableObject>
-              <Text>Hold me for 3s!</Text>
-            </ClickableObject>
+            <ClickableObject imageUrl={imageUrl} text="Hold me for 3s!" />
           </Animated.View>
         </LongPressGestureHandler>
       ),
@@ -115,9 +113,7 @@ const GestureHandlerSwitcher = ({
       outer: (
         <PanGestureHandler onGestureEvent={panGestureEvent}>
           <Animated.View style={animatedStyle}>
-            <ClickableObject>
-              <Text>Drag me!</Text>
-            </ClickableObject>
+            <ClickableObject imageUrl={imageUrl} text="Drag me!" />
           </Animated.View>
         </PanGestureHandler>
       ),
@@ -126,9 +122,7 @@ const GestureHandlerSwitcher = ({
       outer: (
         <PinchGestureHandler onGestureEvent={pinchGestureEvent}>
           <Animated.View style={animatedStyle}>
-            <ClickableObject>
-              <Text>Pinch me!</Text>
-            </ClickableObject>
+            <ClickableObject imageUrl={imageUrl} text="Pinch me!" />
           </Animated.View>
         </PinchGestureHandler>
       ),
@@ -141,9 +135,7 @@ const GestureHandlerSwitcher = ({
             if (nativeEvent.state === State.ACTIVE) onFlingRight();
           }}>
           <Animated.View style={animatedStyle}>
-            <ClickableObject>
-              <Text>Swipe Right!</Text>
-            </ClickableObject>
+            <ClickableObject imageUrl={imageUrl} text="Swipe Right!" />
           </Animated.View>
         </FlingGestureHandler>
       ),
@@ -156,9 +148,7 @@ const GestureHandlerSwitcher = ({
             if (nativeEvent.state === State.ACTIVE) onFlingLeft();
           }}>
           <Animated.View style={animatedStyle}>
-            <ClickableObject>
-              <Text>Swipe Left!</Text>
-            </ClickableObject>
+            <ClickableObject imageUrl={imageUrl} text="Swipe Left!" />
           </Animated.View>
         </FlingGestureHandler>
       ),
@@ -166,9 +156,7 @@ const GestureHandlerSwitcher = ({
     default: {
       outer: (
         <Animated.View style={animatedStyle}>
-          <ClickableObject>
-            <Text>Select gesture!</Text>
-          </ClickableObject>
+          <ClickableObject imageUrl={imageUrl} text="Select gesture!" />
         </Animated.View>
       ),
     },

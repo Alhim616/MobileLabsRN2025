@@ -33,6 +33,39 @@ const styles = StyleSheet.create({
       borderRadius: 8,
     },
   tasksButtonText: {color: '#fff', fontSize: 16, fontWeight: 'bold'},
+  clickableObject: {
+    width: 150,
+    height: 150,
+    borderRadius: 75,
+    overflow: 'hidden',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#3498db',
+  },
+  image: {
+    width: 150,
+    height: 150,
+    borderRadius: 75,
+    position: 'absolute',
+    top: 0,
+    left: 0,
+  },
+  textContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    zIndex: 1,
+  },
+  clickText: {
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    textShadowColor: 'rgba(0,0,0,0.5)',
+    textShadowOffset: {width: 1, height: 1},
+    textShadowRadius: 2,
+  },
+
 });
 
 export default styles;
