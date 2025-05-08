@@ -24,12 +24,12 @@ const getStoreStyles = (colors) => StyleSheet.create({
         right: 16,
       },
       bannerTitle: {
-        color: colors.text,
+        color: "white",
         fontSize: 20,
         fontWeight: 'bold',
       },
       bannerSubtitle: {
-        color: colors.text + '99',
+        color: "white",
         fontSize: 13,
         marginBottom: 8,
       },
