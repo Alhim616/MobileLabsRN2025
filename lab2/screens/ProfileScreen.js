@@ -1,6 +1,6 @@
 import React from 'react';
-  import { View, Text, Image, TouchableOpacity } from 'react-native';
-  import getProfileStyles from '../styles/profileStyles';
+import { View, Text, Image, TouchableOpacity } from 'react-native';
+import getProfileStyles from '../styles/profileStyles';
 import { useThemeContext } from '../ThemeContext';
 import { useTheme } from '@react-navigation/native';
 
