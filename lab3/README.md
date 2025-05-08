@@ -8,7 +8,7 @@
 ![2](screenshots/Screenshot_4.png)
 
 # Історія комітів
-Приклад сторінок:
+
 ![3](screenshots/Screenshot_1.png)
 
 ### Як запустити
