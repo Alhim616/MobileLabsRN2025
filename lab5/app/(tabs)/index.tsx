@@ -37,7 +37,7 @@ export default function HomeScreen() {
 		<ScrollView style={styles.container}>
 			<ThemedView style={styles.content}>
 				<ThemedText type="title">Лабораторна робота 5</ThemedText>
-				<ThemedText type="subtitle">React Native з Expo</ThemedText>
+				<ThemedText type="subtitle">Янушевич Дмитро Петрович ІПЗ-21-5</ThemedText>
 
 				<ThemedView style={styles.infoContainer}>
 					<ThemedText type="title">Інформація про сховище</ThemedText>
