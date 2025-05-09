@@ -14,6 +14,7 @@ Notifications.setNotificationHandler({
 export default function App() {
   const [tasks, setTasks] = useState([]);
   const [taskText, setTaskText] = useState('');
+  const [taskDescription, setTaskDescription] = useState('');
   const [reminderTime, setReminderTime] = useState('');
 
   useEffect(() => {
@@ -35,7 +36,7 @@ export default function App() {
     }
   }
 
-  async function scheduleReminder(task, time) {
+  async function scheduleReminder(task, description, time) {
     const trigger = new Date(time);
     const now = new Date();
     
@@ -49,7 +50,7 @@ export default function App() {
     await Notifications.scheduleNotificationAsync({
       content: {
         title: "Task Reminder",
-        body: `Don't forget: ${task}`,
+        body: `Don't forget: ${task}\n${description}`,
       },
       trigger: { seconds },
     });
@@ -69,12 +70,14 @@ export default function App() {
     const newTask = {
       id: Date.now().toString(),
       text: taskText,
+      description: taskDescription,
       reminderTime: reminderTime,
     };
 
     setTasks([...tasks, newTask]);
-    scheduleReminder(taskText, reminderTime);
+    scheduleReminder(taskText, taskDescription, reminderTime);
     setTaskText('');
+    setTaskDescription('');
     setReminderTime('');
   };
 
@@ -94,6 +97,14 @@ export default function App() {
           onChangeText={setTaskText}
         />
         <TextInput
+          style={[styles.input, styles.descriptionInput]}
+          placeholder="Enter task description"
+          value={taskDescription}
+          onChangeText={setTaskDescription}
+          multiline
+          numberOfLines={3}
+        />
+        <TextInput
           style={styles.input}
           placeholder="Reminder time (YYYY-MM-DD HH:mm)"
           value={reminderTime}
@@ -109,6 +120,9 @@ export default function App() {
           <View style={styles.taskItem}>
             <View style={styles.taskInfo}>
               <Text style={styles.taskText}>{item.text}</Text>
+              {item.description ? (
+                <Text style={styles.taskDescription}>{item.description}</Text>
+              ) : null}
               <Text style={styles.reminderTime}>Reminder: {item.reminderTime}</Text>
             </View>
             <TouchableOpacity
@@ -148,19 +162,30 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     borderRadius: 5,
   },
+  descriptionInput: {
+    height: 80,
+    textAlignVertical: 'top',
+  },
   taskItem: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center',
+    alignItems: 'flex-start',
     padding: 15,
     borderBottomWidth: 1,
     borderBottomColor: '#ddd',
   },
   taskInfo: {
     flex: 1,
+    marginRight: 10,
   },
   taskText: {
     fontSize: 16,
+    fontWeight: 'bold',
+    marginBottom: 5,
+  },
+  taskDescription: {
+    fontSize: 14,
+    color: '#666',
     marginBottom: 5,
   },
   reminderTime: {
