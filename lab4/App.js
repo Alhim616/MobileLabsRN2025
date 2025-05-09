@@ -1,7 +1,9 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, TextInput, Button, FlatList, TouchableOpacity } from 'react-native';
-import * as Notifications from 'expo-notifications';
+import { StyleSheet, Text, View, FlatList } from 'react-native';
 import { useEffect, useState } from 'react';
+import * as Notifications from 'expo-notifications';
+import TaskInputForm from './components/TaskInputForm';
+import TaskItem from './components/TaskItem';
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
@@ -13,9 +15,6 @@ Notifications.setNotificationHandler({
 
 export default function App() {
   const [tasks, setTasks] = useState([]);
-  const [taskText, setTaskText] = useState('');
-  const [taskDescription, setTaskDescription] = useState('');
-  const [reminderTime, setReminderTime] = useState('');
 
   useEffect(() => {
     registerForPushNotificationsAsync();
@@ -24,12 +23,10 @@ export default function App() {
   async function registerForPushNotificationsAsync() {
     const { status: existingStatus } = await Notifications.getPermissionsAsync();
     let finalStatus = existingStatus;
-    
     if (existingStatus !== 'granted') {
       const { status } = await Notifications.requestPermissionsAsync();
       finalStatus = status;
     }
-    
     if (finalStatus !== 'granted') {
       alert('Failed to get push token for push notification!');
       return;
@@ -39,46 +36,37 @@ export default function App() {
   async function scheduleReminder(task, description, time) {
     const trigger = new Date(time);
     const now = new Date();
-    
     if (trigger <= now) {
       alert('Please select a future time for the reminder');
       return;
     }
-
     const seconds = Math.floor((trigger - now) / 1000);
-    
     await Notifications.scheduleNotificationAsync({
       content: {
-        title: "Task Reminder",
+        title: 'Task Reminder',
         body: `Don't forget: ${task}\n${description}`,
       },
       trigger: { seconds },
     });
   }
 
-  const addTask = () => {
+  const addTask = async (taskText, taskDescription, reminderTime) => {
     if (taskText.trim() === '') {
       alert('Please enter a task');
       return;
     }
-
     if (reminderTime.trim() === '') {
       alert('Please enter a reminder time');
       return;
     }
-
     const newTask = {
       id: Date.now().toString(),
       text: taskText,
       description: taskDescription,
       reminderTime: reminderTime,
     };
-
     setTasks([...tasks, newTask]);
-    scheduleReminder(taskText, taskDescription, reminderTime);
-    setTaskText('');
-    setTaskDescription('');
-    setReminderTime('');
+    await scheduleReminder(taskText, taskDescription, reminderTime);
   };
 
   const deleteTask = (id) => {
@@ -88,50 +76,12 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>To-Do Reminder</Text>
-      
-      <View style={styles.inputContainer}>
-        <TextInput
-          style={styles.input}
-          placeholder="Enter task"
-          value={taskText}
-          onChangeText={setTaskText}
-        />
-        <TextInput
-          style={[styles.input, styles.descriptionInput]}
-          placeholder="Enter task description"
-          value={taskDescription}
-          onChangeText={setTaskDescription}
-          multiline
-          numberOfLines={3}
-        />
-        <TextInput
-          style={styles.input}
-          placeholder="Reminder time (YYYY-MM-DD HH:mm)"
-          value={reminderTime}
-          onChangeText={setReminderTime}
-        />
-        <Button title="Add Task" onPress={addTask} />
-      </View>
-
+      <TaskInputForm onAddTask={addTask} />
       <FlatList
         data={tasks}
-        keyExtractor={(item) => item.id}
+        keyExtractor={item => item.id}
         renderItem={({ item }) => (
-          <View style={styles.taskItem}>
-            <View style={styles.taskInfo}>
-              <Text style={styles.taskText}>{item.text}</Text>
-              {item.description ? (
-                <Text style={styles.taskDescription}>{item.description}</Text>
-              ) : null}
-              <Text style={styles.reminderTime}>Reminder: {item.reminderTime}</Text>
-            </View>
-            <TouchableOpacity
-              style={styles.deleteButton}
-              onPress={() => deleteTask(item.id)}
-            >
-              <Text style={styles.deleteButtonText}>Delete</Text>
-            </TouchableOpacity>
-          </View>
+          <TaskItem item={item} onDelete={deleteTask} />
         )}
       />
       <StatusBar style="auto" />
@@ -151,53 +101,5 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 20,
     textAlign: 'center',
-  },
-  inputContainer: {
-    marginBottom: 20,
-  },
-  input: {
-    borderWidth: 1,
-    borderColor: '#ddd',
-    padding: 10,
-    marginBottom: 10,
-    borderRadius: 5,
-  },
-  descriptionInput: {
-    height: 80,
-    textAlignVertical: 'top',
-  },
-  taskItem: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'flex-start',
-    padding: 15,
-    borderBottomWidth: 1,
-    borderBottomColor: '#ddd',
-  },
-  taskInfo: {
-    flex: 1,
-    marginRight: 10,
-  },
-  taskText: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    marginBottom: 5,
-  },
-  taskDescription: {
-    fontSize: 14,
-    color: '#666',
-    marginBottom: 5,
-  },
-  reminderTime: {
-    fontSize: 12,
-    color: '#666',
-  },
-  deleteButton: {
-    backgroundColor: '#ff4444',
-    padding: 8,
-    borderRadius: 5,
-  },
-  deleteButtonText: {
-    color: 'white',
   },
 });
