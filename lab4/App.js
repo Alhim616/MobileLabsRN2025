@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import * as Notifications from 'expo-notifications';
 import TaskInputForm from './components/TaskInputForm';
 import TaskItem from './components/TaskItem';
+import { styles } from './assets/styles/style';
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
@@ -88,18 +89,3 @@ export default function App() {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    padding: 20,
-    paddingTop: 60,
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 20,
-    textAlign: 'center',
-  },
-});

@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { View, TextInput, Button, StyleSheet } from 'react-native';
+import { View, TextInput, Button } from 'react-native';
+import { styles } from '../assets/styles/style';
 
 export default function TaskInputForm({ onAddTask }) {
   const [text, setText] = useState('');
@@ -39,19 +40,3 @@ export default function TaskInputForm({ onAddTask }) {
   );
 }
 
-const styles = StyleSheet.create({
-  inputContainer: {
-    marginBottom: 20,
-  },
-  input: {
-    borderWidth: 1,
-    borderColor: '#ddd',
-    padding: 10,
-    marginBottom: 10,
-    borderRadius: 5,
-  },
-  descriptionInput: {
-    height: 80,
-    textAlignVertical: 'top',
-  },
-});
